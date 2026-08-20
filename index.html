@@ -33,11 +33,11 @@
   *{box-sizing:border-box;}
   html{
     scroll-behavior:smooth;
-    scroll-snap-type: y proximity;
   }
   @media (prefers-reduced-motion: reduce){
-    html{ scroll-behavior:auto; scroll-snap-type:none; }
-    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+    html{ scroll-behavior:auto; }
+    *{transition-duration:0.001ms !important;}
+    *:not(.corn){ animation-duration:0.001ms !important; animation-iteration-count:1 !important; }
   }
 
   body{
@@ -76,8 +76,6 @@
   section{
     position:relative;
     padding:64px 0 56px;
-    scroll-snap-align:start;
-    scroll-snap-stop:normal;
   }
   section > .wrap{ width:100%; }
   section + section{
@@ -100,13 +98,10 @@
   }
 
   /* ============ DOODLES ============ */
-  .doodle{ position:absolute; opacity:0.9; pointer-events:none; }
   svg.line-art{ overflow:visible; }
-  .doodle path, .doodle circle, .doodle ellipse{
+  svg.line-art path, svg.line-art circle, svg.line-art ellipse, svg.line-art rect{
     fill:none; stroke:var(--ink); stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round;
   }
-  .doodle.green path, .doodle.green circle{ stroke:var(--green-deep); }
-  .doodle.terra path, .doodle.terra circle{ stroke:var(--terracota); }
 
   /* ---- mazorcas flotantes (broma privada) ---- */
   .corn-spot{
@@ -117,7 +112,7 @@
   .corn{
     display:block;
     opacity:0.9;
-    animation:cornFloat 6.5s ease-in-out infinite;
+    animation:cornFloat 5s ease-in-out infinite;
   }
   .corn path{
     fill:none; stroke-linecap:round; stroke-linejoin:round;
@@ -126,8 +121,8 @@
   .corn .kernels{ stroke:var(--terracota); stroke-width:1.6; opacity:0.75; }
   .corn .husk{ stroke:var(--green-deep); stroke-width:2.2; }
   @keyframes cornFloat{
-    0%,100%{ transform:translateY(0); }
-    50%{ transform:translateY(-10px); }
+    0%,100%{ transform:translateY(0) rotate(0deg); }
+    50%{ transform:translateY(-14px) rotate(5deg); }
   }
 
   /* reveal on scroll */
@@ -586,27 +581,27 @@
 
     <div class="hero-art">
       <svg viewBox="0 0 340 70" width="100%" height="70" class="line-art">
-        <!-- flower left -->
-        <g transform="translate(20,35)">
-          <path d="M0 0 Q -4 -12 0 -20 Q 4 -12 0 0" stroke="#54613A"/>
-          <path d="M0 -14 Q -10 -14 -14 -22" stroke="#54613A"/>
-          <ellipse cx="0" cy="-24" rx="5" ry="6"/>
-          <ellipse cx="-5" cy="-19" rx="5" ry="6"/>
-          <ellipse cx="5" cy="-19" rx="5" ry="6"/>
-          <ellipse cx="0" cy="-16" rx="5" ry="6"/>
-          <circle cx="0" cy="-20" r="2.4" stroke="#B9683A"/>
+        <!-- Torre de Hércules -->
+        <g transform="translate(50,12)">
+          <path d="M-10 50 Q0 54 10 50" style="stroke:var(--green-deep);"/>
+          <path d="M-6 50 L-3 14 H3 L6 50 Z" style="stroke:var(--terracota);"/>
+          <path d="M-5 28 H5 M-5 38 H5" style="stroke-width:1.6;"/>
+          <path d="M-4 14 V6 H4 V14" style="stroke:var(--terracota);"/>
+          <path d="M-4 6 Q0 0 4 6 Z" style="stroke:var(--terracota);"/>
+          <path d="M0 0 V-5" style="stroke:var(--green-deep);"/>
         </g>
-        <!-- wine glass middle -->
-        <g transform="translate(170,10)">
-          <path d="M-8 0 H8 L5 16 Q5 22 0 22 Q-5 22 -5 16 Z"/>
-          <path d="M0 22 V32 M-7 32 H7"/>
+        <!-- vieira (concha de Santiago) -->
+        <g transform="translate(170,20)">
+          <path d="M-16 34 Q-16 6 0 4 Q16 6 16 34 Z" style="stroke:var(--terracota);"/>
+          <path d="M0 34 L0 5 M0 34 L-9 12 M0 34 L9 12 M0 34 L-15 26 M0 34 L15 26" style="stroke-width:1.5;"/>
+          <path d="M-10 34 Q0 40 10 34" style="stroke:var(--green-deep);"/>
         </g>
-        <!-- sprig right -->
-        <g transform="translate(300,20)">
-          <path d="M0 30 Q4 15 0 0" stroke="#54613A"/>
-          <path d="M0 8 Q10 4 14 -4" stroke="#54613A"/>
-          <path d="M0 16 Q-10 12 -15 4" stroke="#54613A"/>
-          <path d="M0 24 Q9 22 13 14" stroke="#54613A"/>
+        <!-- barquiña -->
+        <g transform="translate(290,14)">
+          <path d="M-18 44 Q-9 40 0 44 T18 44" style="stroke:var(--green-deep);"/>
+          <path d="M0 34 V0" style="stroke-width:1.8;"/>
+          <path d="M0 2 L13 26 L0 26 Z" style="stroke:var(--terracota);"/>
+          <path d="M-14 34 Q0 42 14 34 L10 26 H-10 Z" style="stroke:var(--terracota);"/>
         </g>
       </svg>
     </div>
@@ -633,8 +628,11 @@
 
     <div class="card reveal centered">
       <svg class="card-icon line-art" viewBox="0 0 48 48">
-        <path d="M12 6 V12 M36 6 V12 M8 12 H40 M8 12 V40 H40 V12 M8 20 H40"/>
-        <path d="M18 30 L22 34 L30 24" stroke="#B9683A"/>
+        <path d="M8 22 L24 8 L40 22"/>
+        <path d="M12 22 H36 V42 H12 Z"/>
+        <path d="M20 42 V32 Q20 28 24 28 Q28 28 28 32 V42"/>
+        <path d="M24 8 V2 M21 5 H27" style="stroke:var(--terracota);"/>
+        <circle cx="24" cy="18" r="2" style="stroke:var(--terracota);"/>
       </svg>
       <h3>Misa</h3>
       <span class="time-pill">12:30 h</span>
@@ -652,8 +650,11 @@
 
     <div class="card reveal centered">
       <svg class="card-icon line-art" viewBox="0 0 48 48">
-        <path d="M6 40 H42 M10 40 V22 L24 8 L38 22 V40"/>
-        <path d="M20 40 V28 H28 V40"/>
+        <circle cx="24" cy="25" r="13"/>
+        <path d="M11 25 H37 M13 18 Q24 22 35 18 M13 32 Q24 28 35 32 M18 13 Q21 25 18 37 M30 13 Q27 25 30 37"/>
+        <path d="M24 12 V4" style="stroke:var(--terracota);"/>
+        <path d="M6 8 L10 12 M10 8 L6 12" style="stroke:var(--terracota);"/>
+        <path d="M38 10 L42 14 M42 10 L38 14" style="stroke:var(--terracota);"/>
       </svg>
       <h3>Celebración</h3>
       <p><strong>Pazo Santa Cruz de Mondoi</strong></p>
@@ -686,8 +687,8 @@
 
     <div class="card reveal centered">
       <svg class="card-icon line-art" viewBox="0 0 48 48">
-        <path d="M4 36 Q14 30 24 36 T44 36" stroke="#7C8A56"/>
-        <path d="M4 42 Q14 36 24 42 T44 42" stroke="#7C8A56"/>
+        <path d="M4 36 Q14 30 24 36 T44 36" style="stroke:var(--green);"/>
+        <path d="M4 42 Q14 36 24 42 T44 42" style="stroke:var(--green);"/>
         <path d="M14 34 L14 10 Q20 6 26 10 L14 20" />
       </svg>
       <h3>Tira do Playa</h3>
