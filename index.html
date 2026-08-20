@@ -463,6 +463,77 @@
   }
   .form-msg.show{ display:block; }
 
+  /* ============ MAPA ============ */
+  .map-card{
+    padding:20px 18px 24px;
+  }
+  .map-svg{ width:100%; height:auto; display:block; }
+  .map-land{
+    fill:var(--beige);
+    fill-opacity:0.55;
+    stroke:var(--brown-dark);
+    stroke-width:1.8;
+  }
+  .map-wave{
+    stroke:var(--green-deep);
+    stroke-width:1.5;
+    opacity:0.55;
+    fill:none;
+  }
+  .map-connector{
+    stroke:var(--brown-dark);
+    stroke-width:1.4;
+    stroke-dasharray:4 4;
+    fill:none;
+    opacity:0.75;
+  }
+  .map-connector-label{
+    font-family:'Caveat', cursive;
+    font-size:13px;
+    fill:var(--ink-soft);
+  }
+  .map-pin circle{ stroke:var(--brown-dark); stroke-width:1.3; }
+  .map-pin.venue circle{ fill:var(--terracota); }
+  .map-pin.hotel circle{ fill:var(--white-soft); }
+  .map-pin text{
+    font-family:'Nunito Sans', sans-serif;
+    font-weight:800;
+    font-size:9.5px;
+    text-anchor:middle;
+  }
+  .map-pin.venue text{ fill:var(--white-soft); }
+  .map-pin.hotel text{ fill:var(--ink); }
+
+  .map-legend{ margin-top:20px; }
+  .map-legend-item{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    margin-bottom:12px;
+  }
+  .map-legend-num{
+    flex:0 0 auto;
+    width:24px; height:24px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:0.85rem;
+    border:1.4px solid var(--brown-dark);
+  }
+  .map-legend-num.venue{ background:var(--terracota); color:var(--white-soft); }
+  .map-legend-num.hotel{ background:var(--white-soft); color:var(--ink); }
+  .map-legend-text{ font-size:0.92rem; color:var(--ink-soft); line-height:1.4; padding-top:2px; }
+  .map-legend-text strong{ color:var(--ink); }
+  .map-note{
+    margin-top:16px;
+    text-align:center;
+    font-family:'Caveat', cursive;
+    font-size:1.1rem;
+    color:var(--ink-soft);
+    transform:rotate(-1deg);
+  }
+
   /* ============ REGALOS ============ */
   .iban-card{
     text-align:center;
@@ -541,6 +612,7 @@
   <a href="#horario" data-dot></a>
   <a href="#preboda" data-dot></a>
   <a href="#alojamiento" data-dot></a>
+  <a href="#mapa" data-dot></a>
   <a href="#rsvp" data-dot></a>
   <a href="#regalos" data-dot></a>
 </nav>
@@ -774,6 +846,115 @@
 
     <div class="hotel-dots" id="hotelDots" aria-hidden="true"></div>
     <p class="carousel-hint">Desliza para ver los demás hoteles →</p>
+  </div>
+</section>
+
+<!-- ================= MAPA ================= -->
+<section id="mapa">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Para orientaros</span>
+      <h2>Mapa</h2>
+      <p class="sub">Así de cerca (o lejos) queda cada hotel de la iglesia y de la preboda</p>
+    </div>
+
+    <div class="card map-card reveal">
+      <svg class="map-svg line-art" viewBox="0 0 300 400">
+        <!-- costa / península -->
+        <path class="map-land" d="M150 20 C185 22 182 55 195 70 C210 90 200 115 210 140 C222 165 205 190 212 215 C222 240 205 265 208 290 C214 315 195 335 190 355 C184 372 160 380 130 378 C100 376 85 362 82 340 C72 322 85 302 78 282 C65 262 78 242 70 222 C60 202 72 182 68 160 C58 138 72 118 78 95 C72 72 90 50 110 35 C122 25 135 19 150 20 Z"/>
+
+        <!-- olas: ría / puerto (junto al casco viejo) -->
+        <path class="map-wave" d="M222 58 Q229 54 236 58 Q243 54 250 58"/>
+        <path class="map-wave" d="M228 78 Q235 74 242 78 Q249 74 256 78"/>
+        <path class="map-wave" d="M220 98 Q227 94 234 98 Q241 94 248 98"/>
+
+        <!-- olas: océano Atlántico (junto a la preboda) -->
+        <path class="map-wave" d="M16 268 Q23 264 30 268 Q37 264 44 268"/>
+        <path class="map-wave" d="M12 288 Q19 284 26 288 Q33 284 40 288"/>
+        <path class="map-wave" d="M18 308 Q25 304 32 308 Q39 304 46 308"/>
+
+        <!-- conector caminando entre las dos zonas -->
+        <path class="map-connector" d="M150 142 Q166 176 152 206 Q136 240 113 252"/>
+        <text class="map-connector-label" x="163" y="182" transform="rotate(18 163 182)">≈20-25 min</text>
+        <text class="map-connector-label" x="163" y="196" transform="rotate(18 163 196)">a pie</text>
+
+        <!-- 1 Iglesia -->
+        <g class="map-pin venue" transform="translate(160,68)">
+          <line x1="0" y1="0" x2="0" y2="9" style="stroke:var(--brown-dark); stroke-width:1.3;"/>
+          <circle cx="0" cy="0" r="9"/>
+          <text x="0" y="3.3">1</text>
+        </g>
+        <!-- 2 Preboda -->
+        <g class="map-pin venue" transform="translate(92,290)">
+          <line x1="0" y1="0" x2="0" y2="9" style="stroke:var(--brown-dark); stroke-width:1.3;"/>
+          <circle cx="0" cy="0" r="9"/>
+          <text x="0" y="3.3">2</text>
+        </g>
+        <!-- 3 H. Atlántico -->
+        <g class="map-pin hotel" transform="translate(133,125)">
+          <line x1="0" y1="0" x2="0" y2="7" style="stroke:var(--brown-dark); stroke-width:1.1;"/>
+          <circle cx="0" cy="0" r="7.5"/>
+          <text x="0" y="2.8">3</text>
+        </g>
+        <!-- 4 H. Finisterre -->
+        <g class="map-pin hotel" transform="translate(186,88)">
+          <line x1="0" y1="0" x2="0" y2="7" style="stroke:var(--brown-dark); stroke-width:1.1;"/>
+          <circle cx="0" cy="0" r="7.5"/>
+          <text x="0" y="2.8">4</text>
+        </g>
+        <!-- 5 H. Zenit -->
+        <g class="map-pin hotel" transform="translate(114,266)">
+          <line x1="0" y1="0" x2="0" y2="7" style="stroke:var(--brown-dark); stroke-width:1.1;"/>
+          <circle cx="0" cy="0" r="7.5"/>
+          <text x="0" y="2.8">5</text>
+        </g>
+        <!-- 6 H. Riazor -->
+        <g class="map-pin hotel" transform="translate(104,314)">
+          <line x1="0" y1="0" x2="0" y2="7" style="stroke:var(--brown-dark); stroke-width:1.1;"/>
+          <circle cx="0" cy="0" r="7.5"/>
+          <text x="0" y="2.8">6</text>
+        </g>
+        <!-- 7 H. María Pita -->
+        <g class="map-pin hotel" transform="translate(153,206)">
+          <line x1="0" y1="0" x2="0" y2="7" style="stroke:var(--brown-dark); stroke-width:1.1;"/>
+          <circle cx="0" cy="0" r="7.5"/>
+          <text x="0" y="2.8">7</text>
+        </g>
+      </svg>
+
+      <div class="map-legend">
+        <div class="map-legend-item">
+          <span class="map-legend-num venue">1</span>
+          <span class="map-legend-text"><strong>Iglesia</strong> — Colegiata Santa María del Campo</span>
+        </div>
+        <div class="map-legend-item">
+          <span class="map-legend-num venue">2</span>
+          <span class="map-legend-text"><strong>Preboda</strong> — Tira do Playa, Andén de Riazor</span>
+        </div>
+        <div class="map-legend-item">
+          <span class="map-legend-num hotel">3</span>
+          <span class="map-legend-text"><strong>Hotel Atlántico</strong> — junto al puerto, ~10 min andando de la iglesia</span>
+        </div>
+        <div class="map-legend-item">
+          <span class="map-legend-num hotel">4</span>
+          <span class="map-legend-text"><strong>Hotel Finisterre</strong> — a 2 min andando de la iglesia</span>
+        </div>
+        <div class="map-legend-item">
+          <span class="map-legend-num hotel">5</span>
+          <span class="map-legend-text"><strong>Hotel Zenit</strong> — a 1 min andando de la preboda</span>
+        </div>
+        <div class="map-legend-item">
+          <span class="map-legend-num hotel">6</span>
+          <span class="map-legend-text"><strong>Hotel Riazor</strong> — justo enfrente de la playa de Riazor</span>
+        </div>
+        <div class="map-legend-item">
+          <span class="map-legend-num hotel">7</span>
+          <span class="map-legend-text"><strong>Hotel María Pita</strong> — en el paseo marítimo, a medio camino entre ambos puntos</span>
+        </div>
+      </div>
+
+      <p class="map-note">(mapa hecho a mano, no a escala — ¡pero la idea se entiende!)</p>
+    </div>
   </div>
 </section>
 
