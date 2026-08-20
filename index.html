@@ -25,6 +25,7 @@
     --terracota:#B9683A;
     --terracota-soft:#D79A6E;
     --white-soft:#FFFCF4;
+    --stripe-gold:#D9A94E;
     --card-shadow: 0 2px 0 rgba(74,56,38,0.08), 0 10px 24px -14px rgba(74,56,38,0.25);
     --radius: 22px;
     --max-w: 560px;
@@ -45,12 +46,24 @@
     font-family:'Nunito Sans', sans-serif;
     color:var(--ink);
     background-color:var(--cream);
-    background-image:
-      linear-gradient(var(--paper-line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
-    background-size: 26px 26px;
-    background-position: -1px -1px;
     -webkit-font-smoothing:antialiased;
+  }
+
+  .bg-stripes{
+    position:fixed;
+    inset:0;
+    width:100vw;
+    height:100vh;
+    z-index:-1;
+    pointer-events:none;
+  }
+  .bg-stripes .stripe-line{
+    stroke:var(--stripe-gold);
+    stroke-width:9;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    fill:none;
+    opacity:0.85;
   }
 
   .wrap{max-width:var(--max-w); margin:0 auto; padding:0 22px; position:relative;}
@@ -607,6 +620,15 @@
 </head>
 <body>
 
+<svg class="bg-stripes" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <defs>
+    <pattern id="stripesPattern" width="46" height="90" patternUnits="userSpaceOnUse">
+      <path class="stripe-line" d="M20 0 C25 6 15 12 20 18 C25 24 15 30 20 36 C25 42 15 48 20 54 C25 60 15 66 20 72 C25 78 15 84 20 90"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#stripesPattern)"/>
+</svg>
+
 <nav class="navdots" aria-hidden="true">
   <a href="#hero" data-dot></a>
   <a href="#horario" data-dot></a>
@@ -635,7 +657,7 @@
     </svg>
     <span class="eyebrow">¡Nos casamos!</span>
     <h1>Lola<span class="amp">&amp;</span>Fer</h1>
-    <p class="fullnames">María Dolores García de los Huertos Sánchez &amp; Fernando Máiz De Navasqüés</p>
+    <p class="fullnames">Lola García de los Huertos Sánchez &amp; Fernando Máiz De Navasqüés</p>
 
     <div class="date-strip">
       <svg width="20" height="20" viewBox="0 0 24 24" class="line-art"><path d="M4 4 L4 4 M8 4 V9 M16 4 V9 M4 9 H20 M4 9 V20 H20 V9 M4 4 H20 V9"/></svg>
@@ -693,9 +715,9 @@
       </svg>
     </div>
     <div class="section-head reveal">
-      <span class="eyebrow">Que no se te pase</span>
+      <span class="eyebrow">¡Que no se te pase!</span>
       <h2>Horario y lugar</h2>
-      <p class="sub">Así va a ir el gran día</p>
+      <p class="sub">Así va a ser el gran día</p>
     </div>
 
     <div class="card reveal centered">
@@ -766,7 +788,6 @@
       <h3>Tira do Playa</h3>
       <span class="time-pill">20:00 h</span>
       <p>Andén de Riazor, s/n, 15011 La Coruña</p>
-      <p><em>Estamos cerrando los detalles — ¡en breve os contamos más!</em></p>
       <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=And%C3%A9n+de+Riazor%2C+15011+La+Coru%C3%B1a" target="_blank" rel="noopener">
         <svg width="16" height="16" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:2"><path d="M12 21 C7 15 4 11.5 4 8 a8 8 0 0 1 16 0 c0 3.5 -3 7 -8 13Z"/><circle cx="12" cy="8" r="2.4"/></svg>
         Cómo llegar
@@ -797,20 +818,20 @@
   <div class="hotel-carousel reveal" id="hotelCarousel">
     <div class="hotel-track">
       <div class="hotel-card">
-        <div class="htop"><h3>Hotel Atlántico</h3><span class="price">desde 126 €/noche aprox.</span></div>
+        <div class="htop"><h3>Hotel Atlántico</h3><span class="price">desde 126 €/noche</span></div>
         <ul>
-          <li>20 habitaciones reservadas en principio</li>
           <li>Código <span class="code">BODALYF27</span></li>
           <li>15% de descuento reservando hasta el 29 de abril de 2027</li>
+          <li>Web: <a href="https://www.eurostarshotels.com/eurostars-atlantico.html" target="_blank" rel="noopener">eurostarshotels.com</a></li>
         </ul>
       </div>
 
       <div class="hotel-card">
-        <div class="htop"><h3>Hotel Finisterre</h3><span class="price">149 €/noche</span></div>
+        <div class="htop"><h3>Hotel Finisterre</h3><span class="price">desde 149 €/noche</span></div>
         <ul>
-          <li>15 habitaciones reservadas en principio</li>
           <li>Indicad al reservar: <em>"Boda Lola García de los Huertos y Fernando Máiz"</em></li>
           <li>Hasta el 29 de marzo de 2027</li>
+          <li>Web: <a href="https://www.nh-hotels.com/en/hotel/nh-collection-a-coruna-finisterre" target="_blank" rel="noopener">nh-hotels.com</a></li>
         </ul>
       </div>
 
@@ -821,6 +842,7 @@
           <li>12% de descuento sobre el precio del momento de la reserva</li>
           <li>Hasta el 25 de febrero de 2027</li>
           <li>Reservas: <a href="mailto:reservascoruna@zenithoteles.com">reservascoruna@zenithoteles.com</a></li>
+          <li>Web: <a href="https://coruna.zenithoteles.com/" target="_blank" rel="noopener">zenithoteles.com</a></li>
         </ul>
       </div>
 
@@ -830,6 +852,7 @@
           <li>Código <span class="code">LOLAYFERNANDO</span></li>
           <li>10% de descuento sobre el precio del momento, reservando desde la web del hotel</li>
           <li>Hasta el 13 de abril de 2027</li>
+          <li>Web: <a href="https://www.riazorhotel.com/en/" target="_blank" rel="noopener">riazorhotel.com</a></li>
         </ul>
       </div>
 
@@ -840,6 +863,7 @@
           <li>20% reservando con más de 60 días de antelación</li>
           <li>15% entre 60 y 15 días antes</li>
           <li>10% entre 14 días antes y el 30 de mayo de 2027</li>
+          <li>Web: <a href="https://www.melia.com/en/hotels/spain/a-coruna/melia-maria-pita" target="_blank" rel="noopener">melia.com</a></li>
         </ul>
       </div>
     </div>
@@ -855,7 +879,7 @@
     <div class="section-head reveal">
       <span class="eyebrow">Para orientaros</span>
       <h2>Mapa</h2>
-      <p class="sub">Así de cerca (o lejos) queda cada hotel de la iglesia y de la preboda</p>
+      <p class="sub">Tened en cuenta que entre el punto 1 (la iglesia) y el 6 (Hotel Riazor) ¡tan solo hay 20 minutos a pie!</p>
     </div>
 
     <div class="card map-card reveal">
@@ -875,7 +899,7 @@
 
         <!-- conector caminando entre las dos zonas -->
         <path class="map-connector" d="M150 142 Q166 176 152 206 Q136 240 113 252"/>
-        <text class="map-connector-label" x="163" y="182" transform="rotate(18 163 182)">≈20-25 min</text>
+        <text class="map-connector-label" x="163" y="182" transform="rotate(18 163 182)">10 min</text>
         <text class="map-connector-label" x="163" y="196" transform="rotate(18 163 196)">a pie</text>
 
         <!-- 1 Iglesia -->
@@ -971,7 +995,7 @@
       </svg>
     </div>
     <div class="section-head reveal">
-      <span class="eyebrow">¡Contad con vosotros!</span>
+      <span class="eyebrow">¡Contamos con vosotros!</span>
       <h2>Confirmación</h2>
       <p class="sub">Necesitamos que confirméis antes del <strong>1 de marzo de 2027</strong></p>
     </div>
@@ -1047,7 +1071,7 @@
     <div class="section-head reveal">
       <span class="eyebrow">Si os apetece</span>
       <h2>Regalos</h2>
-      <p class="sub">Vuestra presencia es el mejor regalo. Si además queréis ayudarnos a empezar esta nueva etapa, podéis hacerlo aquí</p>
+      <p class="sub">El mejor regalo es celebrarlo juntos. El segundo mejor puede ir aquí:</p>
     </div>
 
     <div class="card iban-card reveal">
