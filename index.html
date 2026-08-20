@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lola & Fer · 29 de mayo de 2027</title>
+<meta name="description" content="Boda de Lola y Fer · 29 de mayo de 2027 · La Coruña">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Nunito+Sans:wght@400;600;700;800&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    --cream:#F7F1E2;
+    --cream-2:#F1E9D4;
+    --paper-line:#E3D6B3;
+    --beige:#E9DCBB;
+    --ink:#4A3826;
+    --ink-soft:#6E5A42;
+    --brown-dark:#3A2A1B;
+    --green:#7C8A56;
+    --green-deep:#54613A;
+    --terracota:#B9683A;
+    --terracota-soft:#D79A6E;
+    --white-soft:#FFFCF4;
+    --card-shadow: 0 2px 0 rgba(74,56,38,0.08), 0 10px 24px -14px rgba(74,56,38,0.25);
+    --radius: 22px;
+    --max-w: 560px;
+  }
+
+  *{box-sizing:border-box;}
+  html{
+    scroll-behavior:smooth;
+    scroll-snap-type: y proximity;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; scroll-snap-type:none; }
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    font-family:'Nunito Sans', sans-serif;
+    color:var(--ink);
+    background-color:var(--cream);
+    background-image:
+      linear-gradient(var(--paper-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
+    background-size: 26px 26px;
+    background-position: -1px -1px;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{max-width:var(--max-w); margin:0 auto; padding:0 22px;}
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    color:var(--brown-dark);
+    margin:0;
+    line-height:1.05;
+  }
+
+  .eyebrow{
+    font-family:'Caveat', cursive;
+    font-size:1.35rem;
+    color:var(--terracota);
+    display:inline-block;
+    transform:rotate(-2deg);
+    margin-bottom:2px;
+  }
+
+  a{color:var(--terracota); text-decoration-thickness:1.5px; text-underline-offset:3px;}
+
+  section{
+    position:relative;
+    padding:64px 0 56px;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:stretch;
+    scroll-snap-align:start;
+    scroll-snap-stop:normal;
+  }
+  section > .wrap{ width:100%; }
+  section + section{
+    border-top:2px dashed var(--paper-line);
+  }
+
+  .section-head{
+    text-align:center;
+    margin-bottom:34px;
+    position:relative;
+  }
+  .section-head h2{
+    font-size:2rem;
+    font-weight:600;
+  }
+  .section-head p.sub{
+    color:var(--ink-soft);
+    margin-top:8px;
+    font-size:1rem;
+  }
+
+  /* ============ DOODLES ============ */
+  .doodle{ position:absolute; opacity:0.9; pointer-events:none; }
+  svg.line-art{ overflow:visible; }
+  .doodle path, .doodle circle, .doodle ellipse{
+    fill:none; stroke:var(--ink); stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round;
+  }
+  .doodle.green path, .doodle.green circle{ stroke:var(--green-deep); }
+  .doodle.terra path, .doodle.terra circle{ stroke:var(--terracota); }
+
+  /* reveal on scroll */
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ============ HERO ============ */
+  .hero{
+    padding:56px 0 40px;
+    text-align:center;
+    border-top:none;
+  }
+  .hero .rings{ width:64px; height:auto; margin:0 auto 10px; display:block;}
+  .hero .eyebrow{ font-size:1.5rem; }
+  .hero h1{
+    font-size:3.2rem;
+    letter-spacing:0.5px;
+  }
+  .hero h1 .amp{
+    color:var(--terracota);
+    font-style:italic;
+    font-weight:500;
+    padding:0 6px;
+  }
+  .hero .fullnames{
+    margin-top:10px;
+    font-size:0.92rem;
+    color:var(--ink-soft);
+    letter-spacing:0.3px;
+  }
+  .hero .date-strip{
+    margin-top:26px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--white-soft);
+    border:1.5px solid var(--brown-dark);
+    border-radius:999px;
+    padding:10px 22px;
+    box-shadow:var(--card-shadow);
+    font-family:'Fraunces', serif;
+    font-size:1.15rem;
+    font-weight:500;
+  }
+  .hero .place{
+    margin-top:14px;
+    color:var(--ink-soft);
+    font-size:1rem;
+  }
+  .hero .place strong{ color:var(--ink); }
+
+  .countdown{
+    margin-top:18px;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+  }
+  .cd-box{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    width:56px;
+    padding:8px 4px 7px;
+    background:var(--beige);
+    border:1.4px dashed var(--brown-dark);
+    border-radius:12px;
+  }
+  .cd-num{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.3rem;
+    color:var(--terracota);
+    line-height:1.1;
+    font-variant-numeric:tabular-nums;
+  }
+  .cd-label{
+    font-size:0.68rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+  @media (max-width:360px){
+    .cd-box{ width:48px; }
+    .cd-num{ font-size:1.1rem; }
+  }
+
+  .hero-art{
+    position:relative;
+    height:70px;
+    max-width:340px;
+    margin:30px auto 0;
+  }
+  .hero-art svg{ position:absolute; }
+
+  /* ============ CARDS ============ */
+  .card{
+    background:var(--white-soft);
+    border:1.5px solid var(--brown-dark);
+    border-radius:var(--radius);
+    box-shadow:var(--card-shadow);
+    padding:26px 24px;
+    position:relative;
+  }
+  .card + .card{ margin-top:22px; }
+
+  .card .card-icon{
+    width:46px; height:46px;
+    margin-bottom:10px;
+  }
+  .card.centered{ text-align:center; }
+  .card.centered .card-icon{ margin-left:auto; margin-right:auto; }
+  .card.centered .maplink{ justify-content:center; }
+  .card h3{
+    font-size:1.35rem;
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .card .time-pill{
+    display:inline-block;
+    background:var(--beige);
+    border:1.2px solid var(--brown-dark);
+    border-radius:999px;
+    padding:3px 14px;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:0.95rem;
+    margin-bottom:12px;
+  }
+  .card p{
+    margin:4px 0;
+    font-size:0.98rem;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+  .card .maplink{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-top:12px;
+    font-weight:700;
+    font-size:0.92rem;
+    color:var(--terracota);
+  }
+
+  .connector{
+    display:flex;
+    justify-content:center;
+    margin:6px 0;
+  }
+  .connector svg{ width:34px; height:40px; }
+
+  /* ============ HOTELS (carousel) ============ */
+  .hotel-carousel{ width:100%; margin-top:6px; }
+  .hotel-track{
+    display:flex;
+    gap:16px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    padding:6px 22px 14px;
+    scrollbar-width:none;
+  }
+  .hotel-track::-webkit-scrollbar{ display:none; }
+
+  .hotel-card{
+    flex:0 0 80%;
+    max-width:320px;
+    scroll-snap-align:center;
+    scroll-snap-stop:always;
+    background:var(--white-soft);
+    border:1.5px solid var(--brown-dark);
+    border-radius:18px;
+    padding:20px 22px;
+    box-shadow:var(--card-shadow);
+  }
+  .hotel-dots{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin-top:4px;
+  }
+  .hotel-dots span{
+    width:8px; height:8px;
+    border-radius:50%;
+    background:var(--paper-line);
+    border:1.4px solid var(--brown-dark);
+    transition:background .2s ease;
+  }
+  .hotel-dots span.active{ background:var(--terracota); border-color:var(--terracota); }
+  .carousel-hint{
+    text-align:center;
+    font-family:'Caveat', cursive;
+    font-size:1.1rem;
+    color:var(--ink-soft);
+    margin:8px 0 0;
+    transform:rotate(-1deg);
+  }
+  .hotel-card .htop{
+    display:flex; justify-content:space-between; align-items:baseline; gap:10px;
+    flex-wrap:wrap;
+  }
+  .hotel-card h3{ font-size:1.2rem; }
+  .hotel-card .price{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    color:var(--terracota);
+    white-space:nowrap;
+    font-size:1rem;
+  }
+  .hotel-card ul{
+    list-style:none; padding:0; margin:10px 0 0;
+  }
+  .hotel-card li{
+    font-size:0.92rem;
+    color:var(--ink-soft);
+    padding-left:20px;
+    position:relative;
+    margin-bottom:5px;
+    line-height:1.4;
+  }
+  .hotel-card li::before{
+    content:"";
+    position:absolute; left:0; top:7px;
+    width:8px; height:8px;
+    border:1.6px solid var(--green-deep);
+    border-radius:50%;
+  }
+  .hotel-card .code{
+    display:inline-block;
+    background:var(--beige);
+    border:1px dashed var(--brown-dark);
+    border-radius:8px;
+    padding:1px 8px;
+    font-weight:800;
+    letter-spacing:0.5px;
+  }
+
+  /* ============ RSVP ============ */
+  .form-card{
+    background:var(--white-soft);
+    border:1.5px solid var(--brown-dark);
+    border-radius:var(--radius);
+    box-shadow:var(--card-shadow);
+    padding:28px 24px 30px;
+  }
+  .field{ margin-bottom:22px; }
+  .field label.field-label{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.05rem;
+    margin-bottom:10px;
+    color:var(--brown-dark);
+  }
+  .field input[type="text"],
+  .field input[type="email"],
+  .field textarea{
+    width:100%;
+    border:1.5px solid var(--paper-line);
+    background:var(--cream-2);
+    border-radius:12px;
+    padding:12px 14px;
+    font-family:'Nunito Sans', sans-serif;
+    font-size:0.98rem;
+    color:var(--ink);
+  }
+  .field input:focus, .field textarea:focus, .toggle:focus-visible, .btn:focus-visible{
+    outline:3px solid var(--terracota-soft);
+    outline-offset:2px;
+  }
+  .field textarea{ min-height:80px; resize:vertical; }
+
+  .toggle-row{ display:flex; gap:12px; flex-wrap:wrap; }
+  .toggle{
+    flex:1 1 120px;
+    text-align:center;
+    padding:11px 10px;
+    border:1.6px solid var(--brown-dark);
+    border-radius:12px;
+    background:var(--cream-2);
+    font-weight:700;
+    font-size:0.95rem;
+    cursor:pointer;
+    user-select:none;
+    transition:background .15s ease, color .15s ease, transform .1s ease;
+  }
+  .toggle:hover{ transform:translateY(-1px); }
+  .toggle.selected{
+    background:var(--green-deep);
+    border-color:var(--green-deep);
+    color:var(--white-soft);
+  }
+  .toggle.selected.no-style{
+    background:var(--terracota);
+    border-color:var(--terracota);
+  }
+
+  .sub-options{
+    margin-top:14px;
+    display:none;
+  }
+  .sub-options.open{ display:block; }
+  .sub-options .toggle-row .toggle{ flex-basis:auto; }
+
+  .btn{
+    display:inline-block;
+    width:100%;
+    text-align:center;
+    background:var(--terracota);
+    color:var(--white-soft);
+    border:1.5px solid var(--brown-dark);
+    border-radius:999px;
+    padding:14px 20px;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.1rem;
+    cursor:pointer;
+    box-shadow:var(--card-shadow);
+    transition:transform .12s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn:active{ transform:translateY(0); }
+
+  .form-msg{
+    margin-top:16px;
+    text-align:center;
+    font-weight:700;
+    color:var(--green-deep);
+    display:none;
+  }
+  .form-msg.show{ display:block; }
+
+  /* ============ REGALOS ============ */
+  .iban-card{
+    text-align:center;
+  }
+  .iban-box{
+    margin-top:14px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--beige);
+    border:1.5px dashed var(--brown-dark);
+    border-radius:14px;
+    padding:12px 16px;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.02rem;
+    letter-spacing:0.5px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .copy-btn{
+    border:1.4px solid var(--brown-dark);
+    background:var(--white-soft);
+    border-radius:8px;
+    padding:6px 12px;
+    font-family:'Nunito Sans', sans-serif;
+    font-weight:700;
+    font-size:0.82rem;
+    cursor:pointer;
+  }
+  .copy-btn.copied{ background:var(--green-deep); color:var(--white-soft); border-color:var(--green-deep); }
+
+  /* ============ FOOTER ============ */
+  footer{
+    text-align:center;
+    padding:50px 22px 60px;
+    border-top:2px dashed var(--paper-line);
+  }
+  footer .eyebrow{ font-size:1.6rem; }
+  footer p{ color:var(--ink-soft); margin-top:6px; }
+
+  /* nav dots */
+  .navdots{
+    position:fixed;
+    right:14px;
+    top:50%;
+    transform:translateY(-50%);
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    z-index:50;
+  }
+  .navdots a{
+    width:9px; height:9px;
+    border-radius:50%;
+    background:var(--paper-line);
+    border:1.4px solid var(--brown-dark);
+    display:block;
+  }
+  .navdots a.active{ background:var(--terracota); }
+  @media (max-width:400px){ .navdots{ display:none; } }
+
+  small.note{
+    display:block;
+    margin-top:8px;
+    color:var(--ink-soft);
+    font-size:0.82rem;
+  }
+</style>
+</head>
+<body>
+
+<nav class="navdots" aria-hidden="true">
+  <a href="#hero" data-dot></a>
+  <a href="#horario" data-dot></a>
+  <a href="#preboda" data-dot></a>
+  <a href="#alojamiento" data-dot></a>
+  <a href="#rsvp" data-dot></a>
+  <a href="#regalos" data-dot></a>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="hero">
+  <div class="wrap">
+    <svg class="rings line-art" viewBox="0 0 80 40">
+      <circle cx="30" cy="20" r="14"/>
+      <circle cx="50" cy="20" r="14"/>
+    </svg>
+    <span class="eyebrow">¡Nos casamos!</span>
+    <h1>Lola<span class="amp">&amp;</span>Fer</h1>
+    <p class="fullnames">María Dolores García de los Huertos Sánchez &amp; Fernando Máiz Navasques</p>
+
+    <div class="date-strip">
+      <svg width="20" height="20" viewBox="0 0 24 24" class="line-art"><path d="M4 4 L4 4 M8 4 V9 M16 4 V9 M4 9 H20 M4 9 V20 H20 V9 M4 4 H20 V9"/></svg>
+      29 · 05 · 2027
+    </div>
+
+    <div class="countdown" id="countdown" aria-label="Cuenta atrás para la boda">
+      <div class="cd-box"><span class="cd-num" id="cdDays">–</span><span class="cd-label">días</span></div>
+      <div class="cd-box"><span class="cd-num" id="cdHours">–</span><span class="cd-label">horas</span></div>
+      <div class="cd-box"><span class="cd-num" id="cdMins">–</span><span class="cd-label">min</span></div>
+      <div class="cd-box"><span class="cd-num" id="cdSecs">–</span><span class="cd-label">seg</span></div>
+    </div>
+
+    <p class="place">La Coruña, <strong>España</strong></p>
+
+    <div class="hero-art">
+      <svg viewBox="0 0 340 70" width="100%" height="70" class="line-art">
+        <!-- flower left -->
+        <g transform="translate(20,35)">
+          <path d="M0 0 Q -4 -12 0 -20 Q 4 -12 0 0" stroke="#54613A"/>
+          <path d="M0 -14 Q -10 -14 -14 -22" stroke="#54613A"/>
+          <ellipse cx="0" cy="-24" rx="5" ry="6"/>
+          <ellipse cx="-5" cy="-19" rx="5" ry="6"/>
+          <ellipse cx="5" cy="-19" rx="5" ry="6"/>
+          <ellipse cx="0" cy="-16" rx="5" ry="6"/>
+          <circle cx="0" cy="-20" r="2.4" stroke="#B9683A"/>
+        </g>
+        <!-- wine glass middle -->
+        <g transform="translate(170,10)">
+          <path d="M-8 0 H8 L5 16 Q5 22 0 22 Q-5 22 -5 16 Z"/>
+          <path d="M0 22 V32 M-7 32 H7"/>
+        </g>
+        <!-- sprig right -->
+        <g transform="translate(300,20)">
+          <path d="M0 30 Q4 15 0 0" stroke="#54613A"/>
+          <path d="M0 8 Q10 4 14 -4" stroke="#54613A"/>
+          <path d="M0 16 Q-10 12 -15 4" stroke="#54613A"/>
+          <path d="M0 24 Q9 22 13 14" stroke="#54613A"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HORARIO Y LUGAR ================= -->
+<section id="horario">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Que no se te pase</span>
+      <h2>Horario y lugar</h2>
+      <p class="sub">Así va a ir el gran día</p>
+    </div>
+
+    <div class="card reveal centered">
+      <svg class="card-icon line-art" viewBox="0 0 48 48">
+        <path d="M12 6 V12 M36 6 V12 M8 12 H40 M8 12 V40 H40 V12 M8 20 H40"/>
+        <path d="M18 30 L22 34 L30 24" stroke="#B9683A"/>
+      </svg>
+      <h3>Misa</h3>
+      <span class="time-pill">12:30 h</span>
+      <p><strong>Colegiata Santa María del Campo</strong></p>
+      <p>Calle Damas, 24, 15001 La Coruña</p>
+      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Colegiata+de+Santa+Mar%C3%ADa+del+Campo%2C+Calle+Damas+24%2C+15001+La+Coru%C3%B1a" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:2"><path d="M12 21 C7 15 4 11.5 4 8 a8 8 0 0 1 16 0 c0 3.5 -3 7 -8 13Z"/><circle cx="12" cy="8" r="2.4"/></svg>
+        Cómo llegar
+      </a>
+    </div>
+
+    <div class="connector">
+      <svg viewBox="0 0 40 44" class="line-art"><path d="M20 2 V34 M20 34 L13 27 M20 34 L27 27"/></svg>
+    </div>
+
+    <div class="card reveal centered">
+      <svg class="card-icon line-art" viewBox="0 0 48 48">
+        <path d="M6 40 H42 M10 40 V22 L24 8 L38 22 V40"/>
+        <path d="M20 40 V28 H28 V40"/>
+      </svg>
+      <h3>Celebración</h3>
+      <p><strong>Pazo Santa Cruz de Mondoi</strong></p>
+      <p>Sta. Cruz de Mondoi, 60, 15389 Oza dos Ríos, La Coruña</p>
+      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Pazo+Santa+Cruz+de+Mondoi%2C+Sta.+Cruz+de+Mondoi+60%2C+15389+Oza+dos+R%C3%ADos" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:2"><path d="M12 21 C7 15 4 11.5 4 8 a8 8 0 0 1 16 0 c0 3.5 -3 7 -8 13Z"/><circle cx="12" cy="8" r="2.4"/></svg>
+        Cómo llegar
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PREBODA ================= -->
+<section id="preboda">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">La noche antes</span>
+      <h2>Preboda</h2>
+      <p class="sub">Empezamos a calentar motores</p>
+    </div>
+
+    <div class="card reveal centered">
+      <svg class="card-icon line-art" viewBox="0 0 48 48">
+        <path d="M4 36 Q14 30 24 36 T44 36" stroke="#7C8A56"/>
+        <path d="M4 42 Q14 36 24 42 T44 42" stroke="#7C8A56"/>
+        <path d="M14 34 L14 10 Q20 6 26 10 L14 20" />
+      </svg>
+      <h3>Tira do Playa</h3>
+      <span class="time-pill">20:00 h</span>
+      <p>Andén de Riazor, s/n, 15011 La Coruña</p>
+      <p><em>Estamos cerrando los detalles — ¡en breve os contamos más!</em></p>
+      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=And%C3%A9n+de+Riazor%2C+15011+La+Coru%C3%B1a" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:2"><path d="M12 21 C7 15 4 11.5 4 8 a8 8 0 0 1 16 0 c0 3.5 -3 7 -8 13Z"/><circle cx="12" cy="8" r="2.4"/></svg>
+        Cómo llegar
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ALOJAMIENTO ================= -->
+<section id="alojamiento">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Para quedaros a dormir</span>
+      <h2>Alojamiento</h2>
+      <p class="sub">Descuentos para invitados de la boda — reservad con tiempo, ¡las habitaciones vuelan!</p>
+    </div>
+  </div>
+
+  <div class="hotel-carousel reveal" id="hotelCarousel">
+    <div class="hotel-track">
+      <div class="hotel-card">
+        <div class="htop"><h3>Hotel Atlántico</h3><span class="price">desde 126 €/noche aprox.</span></div>
+        <ul>
+          <li>20 habitaciones reservadas en principio</li>
+          <li>Código <span class="code">BODALYF27</span></li>
+          <li>15% de descuento reservando hasta el 29 de abril de 2027</li>
+        </ul>
+      </div>
+
+      <div class="hotel-card">
+        <div class="htop"><h3>Hotel Finisterre</h3><span class="price">149 €/noche</span></div>
+        <ul>
+          <li>15 habitaciones reservadas en principio</li>
+          <li>Indicad al reservar: <em>"Boda Lola García de los Huertos y Fernando Máiz"</em></li>
+          <li>Hasta el 29 de marzo de 2027</li>
+        </ul>
+      </div>
+
+      <div class="hotel-card">
+        <div class="htop"><h3>Hotel Zenit</h3><span class="price">desde 150 €/noche aprox.</span></div>
+        <ul>
+          <li>Indicad al reservar: <em>"Boda Lola y Fernando"</em></li>
+          <li>12% de descuento sobre el precio del momento de la reserva</li>
+          <li>Hasta el 25 de febrero de 2027</li>
+          <li>Reservas: <a href="mailto:reservascoruna@zenithoteles.com">reservascoruna@zenithoteles.com</a></li>
+        </ul>
+      </div>
+
+      <div class="hotel-card">
+        <div class="htop"><h3>Hotel Riazor</h3><span class="price">desde 150 €/noche aprox.</span></div>
+        <ul>
+          <li>Código <span class="code">LOLAYFERNANDO</span></li>
+          <li>10% de descuento sobre el precio del momento, reservando desde la web del hotel</li>
+          <li>Hasta el 13 de abril de 2027</li>
+        </ul>
+      </div>
+
+      <div class="hotel-card">
+        <div class="htop"><h3>Hotel María Pita</h3><span class="price">desde 180 €/noche aprox.</span></div>
+        <ul>
+          <li>Descuento a través de un enlace específico (os lo compartiremos)</li>
+          <li>20% reservando con más de 60 días de antelación</li>
+          <li>15% entre 60 y 15 días antes</li>
+          <li>10% entre 14 días antes y el 30 de mayo de 2027</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hotel-dots" id="hotelDots" aria-hidden="true"></div>
+    <p class="carousel-hint">Desliza para ver los demás hoteles →</p>
+  </div>
+</section>
+
+<!-- ================= RSVP ================= -->
+<section id="rsvp">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">¡Contad con vosotros!</span>
+      <h2>Confirmación</h2>
+      <p class="sub">Necesitamos que confirméis antes del <strong>1 de marzo de 2027</strong></p>
+    </div>
+
+    <form class="form-card reveal" id="rsvpForm">
+      <div class="field">
+        <label class="field-label" for="nombre">Nombre y apellidos</label>
+        <input type="text" id="nombre" name="nombre" required placeholder="¿Cómo os llamáis?">
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="email">Email (opcional, por si tenemos que escribiros)</label>
+        <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com">
+      </div>
+
+      <div class="field">
+        <span class="field-label">¿Asistirás a la boda?</span>
+        <div class="toggle-row" data-group="boda">
+          <div class="toggle" data-value="Sí">Sí, allí estaré</div>
+          <div class="toggle" data-value="No">No podré ir</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="field-label">¿Asistirás a la preboda?</span>
+        <div class="toggle-row" data-group="preboda">
+          <div class="toggle" data-value="Sí">Sí</div>
+          <div class="toggle" data-value="No">No</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="field-label">¿Necesitarás autobús para la boda?</span>
+        <div class="toggle-row" data-group="autobus">
+          <div class="toggle" data-value="Sí">Sí</div>
+          <div class="toggle" data-value="No">No</div>
+        </div>
+
+        <div class="sub-options" id="busSubOptions">
+          <span class="field-label" style="font-size:0.95rem;">¿Ida, vuelta o ambas?</span>
+          <div class="toggle-row" data-group="busTramo">
+            <div class="toggle" data-value="Solo ida">Solo ida</div>
+            <div class="toggle" data-value="Solo vuelta">Solo vuelta</div>
+            <div class="toggle" data-value="Ida y vuelta">Ida y vuelta</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="comentarios">¿Algo más que debamos saber? (alergias, dietas...)</label>
+        <textarea id="comentarios" name="comentarios" placeholder="Cuéntanos lo que necesitemos saber"></textarea>
+      </div>
+
+      <button type="submit" class="btn">Enviar confirmación</button>
+      <p class="form-msg" id="formMsg">¡Gracias! Hemos recibido vuestra confirmación 💛</p>
+      <small class="note" id="formNote"></small>
+    </form>
+  </div>
+</section>
+
+<!-- ================= REGALOS ================= -->
+<section id="regalos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Si os apetece</span>
+      <h2>Regalos</h2>
+      <p class="sub">Vuestra presencia es el mejor regalo. Si además queréis ayudarnos a empezar esta nueva etapa, podéis hacerlo aquí</p>
+    </div>
+
+    <div class="card iban-card reveal">
+      <svg class="card-icon line-art" viewBox="0 0 48 48" style="margin:0 auto 10px;">
+        <path d="M6 14 H42 V36 H6 Z"/>
+        <path d="M6 20 H42"/>
+        <path d="M12 28 H20"/>
+      </svg>
+      <h3>Cuenta corriente</h3>
+      <div class="iban-box">
+        <span id="ibanText">ES53 1583 0001 1491 4234 3312</span>
+        <button class="copy-btn" id="copyIban" type="button">Copiar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="eyebrow">Con muchísimo cariño</span>
+  <svg width="60" height="30" viewBox="0 0 80 40" class="line-art" style="margin:8px auto; display:block;">
+    <circle cx="30" cy="20" r="14"/>
+    <circle cx="50" cy="20" r="14"/>
+  </svg>
+  <h3 style="font-size:1.4rem;">Lola &amp; Fer</h3>
+  <p>Nos hace muchísima ilusión celebrarlo con vosotros</p>
+</footer>
+
+<script>
+  // ---- countdown ----
+  const WEDDING_DATE = new Date("2027-05-29T12:30:00+02:00");
+  const cdDays = document.getElementById('cdDays');
+  const cdHours = document.getElementById('cdHours');
+  const cdMins = document.getElementById('cdMins');
+  const cdSecs = document.getElementById('cdSecs');
+
+  function updateCountdown(){
+    const diff = WEDDING_DATE - new Date();
+    if(diff <= 0){
+      cdDays.textContent = '0'; cdHours.textContent = '0';
+      cdMins.textContent = '0'; cdSecs.textContent = '0';
+      return;
+    }
+    const s = Math.floor(diff / 1000);
+    cdDays.textContent = Math.floor(s / 86400);
+    cdHours.textContent = String(Math.floor((s % 86400) / 3600)).padStart(2,'0');
+    cdMins.textContent = String(Math.floor((s % 3600) / 60)).padStart(2,'0');
+    cdSecs.textContent = String(s % 60).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ---- scroll reveal ----
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  },{ threshold:0.12 });
+  revealEls.forEach(el=>io.observe(el));
+
+  // ---- nav dots active state ----
+  const dots = document.querySelectorAll('[data-dot]');
+  const sections = [...dots].map(d=>document.querySelector(d.getAttribute('href')));
+  const dotIO = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      const idx = sections.indexOf(entry.target);
+      if(entry.isIntersecting && idx>-1){
+        dots.forEach(d=>d.classList.remove('active'));
+        dots[idx].classList.add('active');
+      }
+    });
+  },{ threshold:0.5 });
+  sections.forEach(s=> s && dotIO.observe(s));
+
+  // ---- hotel carousel dots ----
+  const hotelTrack = document.querySelector('.hotel-track');
+  const hotelDots = document.getElementById('hotelDots');
+  if(hotelTrack && hotelDots){
+    const cards = [...hotelTrack.querySelectorAll('.hotel-card')];
+    cards.forEach((_, i)=>{
+      const dot = document.createElement('span');
+      if(i === 0) dot.classList.add('active');
+      hotelDots.appendChild(dot);
+    });
+    const dotEls = [...hotelDots.children];
+    let scrollTimeout;
+    hotelTrack.addEventListener('scroll', ()=>{
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(()=>{
+        const trackCenter = hotelTrack.scrollLeft + hotelTrack.clientWidth / 2;
+        let closest = 0, closestDist = Infinity;
+        cards.forEach((card, i)=>{
+          const dist = Math.abs((card.offsetLeft + card.offsetWidth/2) - trackCenter);
+          if(dist < closestDist){ closestDist = dist; closest = i; }
+        });
+        dotEls.forEach((d,i)=>d.classList.toggle('active', i===closest));
+      }, 80);
+    }, { passive:true });
+  }
+
+  // ---- toggle groups (act like radio buttons) ----
+  function setupToggleGroup(group){
+    const row = document.querySelector(`.toggle-row[data-group="${group}"]`);
+    if(!row) return;
+    const toggles = row.querySelectorAll('.toggle');
+    toggles.forEach(t=>{
+      t.addEventListener('click', ()=>{
+        toggles.forEach(x=>x.classList.remove('selected','no-style'));
+        t.classList.add('selected');
+        if(t.dataset.value === 'No'){ t.classList.add('no-style'); }
+        row.dispatchEvent(new CustomEvent('changed', { detail: t.dataset.value }));
+      });
+    });
+  }
+  ['boda','preboda','autobus','busTramo'].forEach(setupToggleGroup);
+
+  // ---- conditional bus sub-options ----
+  const autobusRow = document.querySelector('.toggle-row[data-group="autobus"]');
+  const busSub = document.getElementById('busSubOptions');
+  autobusRow.addEventListener('changed', (e)=>{
+    if(e.detail === 'Sí'){ busSub.classList.add('open'); }
+    else { busSub.classList.remove('open');
+      busSub.querySelectorAll('.toggle').forEach(t=>t.classList.remove('selected','no-style'));
+    }
+  });
+
+  // ---- copy IBAN ----
+  const copyBtn = document.getElementById('copyIban');
+  copyBtn.addEventListener('click', async ()=>{
+    const text = document.getElementById('ibanText').textContent.replace(/\s+/g,' ').trim();
+    try{
+      await navigator.clipboard.writeText(text);
+      copyBtn.textContent = '¡Copiado!';
+      copyBtn.classList.add('copied');
+      setTimeout(()=>{ copyBtn.textContent='Copiar'; copyBtn.classList.remove('copied'); }, 2000);
+    }catch(err){
+      alert('IBAN: ' + text);
+    }
+  });
+
+  // ---- RSVP form submit ----
+  // Para recibir las respuestas en vuestro email sin necesidad de programar un backend,
+  // podéis usar un servicio gratuito como https://formspree.io :
+  // 1) Cread una cuenta gratuita y un formulario nuevo.
+  // 2) Sustituid la constante FORM_ENDPOINT de aquí abajo por la URL que os den (algo así como
+  //    "https://formspree.io/f/xxxxxxx").
+  // 3) Volved a subir este archivo a GitHub.
+  // Si dejáis FORM_ENDPOINT vacío, el formulario mostrará el mensaje de agradecimiento
+  // pero NO enviará los datos a ningún sitio.
+  const FORM_ENDPOINT = "";
+
+  const form = document.getElementById('rsvpForm');
+  const formMsg = document.getElementById('formMsg');
+  const formNote = document.getElementById('formNote');
+
+  if(!FORM_ENDPOINT){
+    formNote.textContent = "Nota para Lola y Fer: falta configurar FORM_ENDPOINT en el código para recibir las respuestas por email.";
+  }
+
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+
+    const getSelected = (group)=>{
+      const sel = document.querySelector(`.toggle-row[data-group="${group}"] .toggle.selected`);
+      return sel ? sel.dataset.value : '';
+    };
+
+    const asisteBoda = getSelected('boda');
+    const asistePreboda = getSelected('preboda');
+    const necesitaBus = getSelected('autobus');
+    const tramoBus = necesitaBus === 'Sí' ? getSelected('busTramo') : '';
+
+    if(!document.getElementById('nombre').value.trim()){
+      alert('Por favor, escribid vuestro nombre.');
+      return;
+    }
+    if(!asisteBoda){
+      alert('Por favor, indicad si asistiréis a la boda.');
+      return;
+    }
+
+    const payload = {
+      nombre: document.getElementById('nombre').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      asiste_boda: asisteBoda,
+      asiste_preboda: asistePreboda,
+      necesita_autobus: necesitaBus,
+      tramo_autobus: tramoBus,
+      comentarios: document.getElementById('comentarios').value.trim()
+    };
+
+    if(FORM_ENDPOINT){
+      try{
+        await fetch(FORM_ENDPOINT, {
+          method:'POST',
+          headers:{ 'Content-Type':'application/json', 'Accept':'application/json' },
+          body: JSON.stringify(payload)
+        });
+      }catch(err){
+        console.error('Error enviando el formulario', err);
+      }
+    }
+
+    formMsg.classList.add('show');
+    form.querySelectorAll('input, textarea').forEach(el=>el.value='');
+    document.querySelectorAll('.toggle.selected').forEach(t=>t.classList.remove('selected','no-style'));
+    busSub.classList.remove('open');
+    form.scrollIntoView({ behavior:'smooth', block:'center' });
+  });
+</script>
+
+</body>
+</html>
