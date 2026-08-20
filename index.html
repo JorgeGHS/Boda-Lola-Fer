@@ -53,7 +53,7 @@
     -webkit-font-smoothing:antialiased;
   }
 
-  .wrap{max-width:var(--max-w); margin:0 auto; padding:0 22px;}
+  .wrap{max-width:var(--max-w); margin:0 auto; padding:0 22px; position:relative;}
 
   h1,h2,h3{
     font-family:'Fraunces', serif;
@@ -76,11 +76,6 @@
   section{
     position:relative;
     padding:64px 0 56px;
-    min-height:100svh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:stretch;
     scroll-snap-align:start;
     scroll-snap-stop:normal;
   }
@@ -114,14 +109,14 @@
   .doodle.terra path, .doodle.terra circle{ stroke:var(--terracota); }
 
   /* ---- mazorcas flotantes (broma privada) ---- */
-  .corn{
+  .corn-spot{
     position:absolute;
-    width:34px;
-    height:auto;
-    opacity:0.85;
+    z-index:3;
     pointer-events:none;
-    z-index:1;
-    transform-origin:center;
+  }
+  .corn{
+    display:block;
+    opacity:0.9;
     animation:cornFloat 6.5s ease-in-out infinite;
   }
   .corn path{
@@ -131,8 +126,8 @@
   .corn .kernels{ stroke:var(--terracota); stroke-width:1.6; opacity:0.75; }
   .corn .husk{ stroke:var(--green-deep); stroke-width:2.2; }
   @keyframes cornFloat{
-    0%,100%{ transform:translateY(0) rotate(var(--r, -8deg)); }
-    50%{ transform:translateY(-12px) rotate(var(--r, -8deg)); }
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-10px); }
   }
 
   /* reveal on scroll */
@@ -557,14 +552,16 @@
 
 <!-- ================= HERO ================= -->
 <section class="hero" id="hero">
-  <svg class="corn" viewBox="0 0 40 74" style="top:16px; right:22px; width:30px; --r:12deg; animation-delay:0s;">
-    <path class="husk" d="M20 58 C13 66 9 74 4 76"/>
-    <path class="husk" d="M20 58 C27 66 31 74 36 76"/>
-    <path class="husk" d="M20 58 V76"/>
-    <path class="cob" d="M20 4 C29 4 33 15 33 30 C33 46 29 57 20 61 C11 57 7 46 7 30 C7 15 11 4 20 4 Z"/>
-    <path class="kernels" d="M10 13 H30 M9 19 H31 M9 25 H31 M9 31 H31 M9 37 H31 M9 43 H31 M11 49 H29 M13 54 H27"/>
-  </svg>
   <div class="wrap">
+    <div class="corn-spot" style="top:-4px; right:6px; transform:rotate(12deg);">
+      <svg class="corn" viewBox="0 0 40 74" width="30" height="56" style="animation-delay:0s;">
+        <path class="husk" d="M20 58 C13 66 9 74 4 76"/>
+        <path class="husk" d="M20 58 C27 66 31 74 36 76"/>
+        <path class="husk" d="M20 58 V76"/>
+        <path class="cob" d="M20 4 C29 4 33 15 33 30 C33 46 29 57 20 61 C11 57 7 46 7 30 C7 15 11 4 20 4 Z"/>
+        <path class="kernels" d="M10 13 H30 M9 19 H31 M9 25 H31 M9 31 H31 M9 37 H31 M9 43 H31 M11 49 H29 M13 54 H27"/>
+      </svg>
+    </div>
     <svg class="rings line-art" viewBox="0 0 80 40">
       <circle cx="30" cy="20" r="14"/>
       <circle cx="50" cy="20" r="14"/>
@@ -618,14 +615,16 @@
 
 <!-- ================= HORARIO Y LUGAR ================= -->
 <section id="horario">
-  <svg class="corn" viewBox="0 0 40 74" style="bottom:22px; left:12px; width:26px; --r:-10deg; animation-delay:1.5s;">
-    <path class="husk" d="M20 58 C13 66 9 74 4 76"/>
-    <path class="husk" d="M20 58 C27 66 31 74 36 76"/>
-    <path class="husk" d="M20 58 V76"/>
-    <path class="cob" d="M20 4 C29 4 33 15 33 30 C33 46 29 57 20 61 C11 57 7 46 7 30 C7 15 11 4 20 4 Z"/>
-    <path class="kernels" d="M10 13 H30 M9 19 H31 M9 25 H31 M9 31 H31 M9 37 H31 M9 43 H31 M11 49 H29 M13 54 H27"/>
-  </svg>
   <div class="wrap">
+    <div class="corn-spot" style="bottom:-2px; left:0px; transform:rotate(-10deg);">
+      <svg class="corn" viewBox="0 0 40 74" width="26" height="48" style="animation-delay:1.5s;">
+        <path class="husk" d="M20 58 C13 66 9 74 4 76"/>
+        <path class="husk" d="M20 58 C27 66 31 74 36 76"/>
+        <path class="husk" d="M20 58 V76"/>
+        <path class="cob" d="M20 4 C29 4 33 15 33 30 C33 46 29 57 20 61 C11 57 7 46 7 30 C7 15 11 4 20 4 Z"/>
+        <path class="kernels" d="M10 13 H30 M9 19 H31 M9 25 H31 M9 31 H31 M9 37 H31 M9 43 H31 M11 49 H29 M13 54 H27"/>
+      </svg>
+    </div>
     <div class="section-head reveal">
       <span class="eyebrow">Que no se te pase</span>
       <h2>Horario y lugar</h2>
@@ -669,14 +668,16 @@
 
 <!-- ================= PREBODA ================= -->
 <section id="preboda">
-  <svg class="corn" viewBox="0 0 40 74" style="top:18px; right:24px; width:30px; --r:14deg; animation-delay:0.8s;">
-    <path class="husk" d="M20 58 C13 66 9 74 4 76"/>
-    <path class="husk" d="M20 58 C27 66 31 74 36 76"/>
-    <path class="husk" d="M20 58 V76"/>
-    <path class="cob" d="M20 4 C29 4 33 15 33 30 C33 46 29 57 20 61 C11 57 7 46 7 30 C7 15 11 4 20 4 Z"/>
-    <path class="kernels" d="M10 13 H30 M9 19 H31 M9 25 H31 M9 31 H31 M9 37 H31 M9 43 H31 M11 49 H29 M13 54 H27"/>
-  </svg>
   <div class="wrap">
+    <div class="corn-spot" style="top:-2px; right:0px; transform:rotate(14deg);">
+      <svg class="corn" viewBox="0 0 40 74" width="30" height="56" style="animation-delay:0.8s;">
+        <path class="husk" d="M20 58 C13 66 9 74 4 76"/>
+        <path class="husk" d="M20 58 C27 66 31 74 36 76"/>
+        <path class="husk" d="M20 58 V76"/>
+        <path class="cob" d="M20 4 C29 4 33 15 33 30 C33 46 29 57 20 61 C11 57 7 46 7 30 C7 15 11 4 20 4 Z"/>
+        <path class="kernels" d="M10 13 H30 M9 19 H31 M9 25 H31 M9 31 H31 M9 37 H31 M9 43 H31 M11 49 H29 M13 54 H27"/>
+      </svg>
+    </div>
     <div class="section-head reveal">
       <span class="eyebrow">La noche antes</span>
       <h2>Preboda</h2>
@@ -703,14 +704,16 @@
 
 <!-- ================= ALOJAMIENTO ================= -->
 <section id="alojamiento">
-  <svg class="corn" viewBox="0 0 40 74" style="top:14px; left:14px; width:28px; --r:-8deg; animation-delay:2s;">
-    <path class="husk" d="M20 58 C13 66 9 74 4 76"/>
-    <path class="husk" d="M20 58 C27 66 31 74 36 76"/>
-    <path class="husk" d="M20 58 V76"/>
-    <path class="cob" d="M20 4 C29 4 33 15 33 30 C33 46 29 57 20 61 C11 57 7 46 7 30 C7 15 11 4 20 4 Z"/>
-    <path class="kernels" d="M10 13 H30 M9 19 H31 M9 25 H31 M9 31 H31 M9 37 H31 M9 43 H31 M11 49 H29 M13 54 H27"/>
-  </svg>
   <div class="wrap">
+    <div class="corn-spot" style="top:-4px; left:0px; transform:rotate(-8deg);">
+      <svg class="corn" viewBox="0 0 40 74" width="28" height="52" style="animation-delay:2s;">
+        <path class="husk" d="M20 58 C13 66 9 74 4 76"/>
+        <path class="husk" d="M20 58 C27 66 31 74 36 76"/>
+        <path class="husk" d="M20 58 V76"/>
+        <path class="cob" d="M20 4 C29 4 33 15 33 30 C33 46 29 57 20 61 C11 57 7 46 7 30 C7 15 11 4 20 4 Z"/>
+        <path class="kernels" d="M10 13 H30 M9 19 H31 M9 25 H31 M9 31 H31 M9 37 H31 M9 43 H31 M11 49 H29 M13 54 H27"/>
+      </svg>
+    </div>
     <div class="section-head reveal">
       <span class="eyebrow">Para quedaros a dormir</span>
       <h2>Alojamiento</h2>
@@ -775,14 +778,16 @@
 
 <!-- ================= RSVP ================= -->
 <section id="rsvp">
-  <svg class="corn" viewBox="0 0 40 74" style="top:20px; left:10px; width:26px; --r:8deg; animation-delay:1s;">
-    <path class="husk" d="M20 58 C13 66 9 74 4 76"/>
-    <path class="husk" d="M20 58 C27 66 31 74 36 76"/>
-    <path class="husk" d="M20 58 V76"/>
-    <path class="cob" d="M20 4 C29 4 33 15 33 30 C33 46 29 57 20 61 C11 57 7 46 7 30 C7 15 11 4 20 4 Z"/>
-    <path class="kernels" d="M10 13 H30 M9 19 H31 M9 25 H31 M9 31 H31 M9 37 H31 M9 43 H31 M11 49 H29 M13 54 H27"/>
-  </svg>
   <div class="wrap">
+    <div class="corn-spot" style="top:-2px; left:0px; transform:rotate(8deg);">
+      <svg class="corn" viewBox="0 0 40 74" width="26" height="48" style="animation-delay:1s;">
+        <path class="husk" d="M20 58 C13 66 9 74 4 76"/>
+        <path class="husk" d="M20 58 C27 66 31 74 36 76"/>
+        <path class="husk" d="M20 58 V76"/>
+        <path class="cob" d="M20 4 C29 4 33 15 33 30 C33 46 29 57 20 61 C11 57 7 46 7 30 C7 15 11 4 20 4 Z"/>
+        <path class="kernels" d="M10 13 H30 M9 19 H31 M9 25 H31 M9 31 H31 M9 37 H31 M9 43 H31 M11 49 H29 M13 54 H27"/>
+      </svg>
+    </div>
     <div class="section-head reveal">
       <span class="eyebrow">¡Contad con vosotros!</span>
       <h2>Confirmación</h2>
@@ -847,14 +852,16 @@
 
 <!-- ================= REGALOS ================= -->
 <section id="regalos">
-  <svg class="corn" viewBox="0 0 40 74" style="bottom:24px; left:16px; width:30px; --r:-12deg; animation-delay:0.4s;">
-    <path class="husk" d="M20 58 C13 66 9 74 4 76"/>
-    <path class="husk" d="M20 58 C27 66 31 74 36 76"/>
-    <path class="husk" d="M20 58 V76"/>
-    <path class="cob" d="M20 4 C29 4 33 15 33 30 C33 46 29 57 20 61 C11 57 7 46 7 30 C7 15 11 4 20 4 Z"/>
-    <path class="kernels" d="M10 13 H30 M9 19 H31 M9 25 H31 M9 31 H31 M9 37 H31 M9 43 H31 M11 49 H29 M13 54 H27"/>
-  </svg>
   <div class="wrap">
+    <div class="corn-spot" style="bottom:6px; left:0px; transform:rotate(-12deg);">
+      <svg class="corn" viewBox="0 0 40 74" width="30" height="56" style="animation-delay:0.4s;">
+        <path class="husk" d="M20 58 C13 66 9 74 4 76"/>
+        <path class="husk" d="M20 58 C27 66 31 74 36 76"/>
+        <path class="husk" d="M20 58 V76"/>
+        <path class="cob" d="M20 4 C29 4 33 15 33 30 C33 46 29 57 20 61 C11 57 7 46 7 30 C7 15 11 4 20 4 Z"/>
+        <path class="kernels" d="M10 13 H30 M9 19 H31 M9 25 H31 M9 31 H31 M9 37 H31 M9 43 H31 M11 49 H29 M13 54 H27"/>
+      </svg>
+    </div>
     <div class="section-head reveal">
       <span class="eyebrow">Si os apetece</span>
       <h2>Regalos</h2>
@@ -877,20 +884,24 @@
 </section>
 
 <footer>
-  <svg class="corn" viewBox="0 0 40 74" style="bottom:16px; right:26px; width:38px; --r:10deg; animation-delay:1.8s;">
-    <path class="husk" d="M20 58 C13 66 9 74 4 76"/>
-    <path class="husk" d="M20 58 C27 66 31 74 36 76"/>
-    <path class="husk" d="M20 58 V76"/>
-    <path class="cob" d="M20 4 C29 4 33 15 33 30 C33 46 29 57 20 61 C11 57 7 46 7 30 C7 15 11 4 20 4 Z"/>
-    <path class="kernels" d="M10 13 H30 M9 19 H31 M9 25 H31 M9 31 H31 M9 37 H31 M9 43 H31 M11 49 H29 M13 54 H27"/>
-  </svg>
-  <span class="eyebrow">Con muchísimo cariño</span>
-  <svg width="60" height="30" viewBox="0 0 80 40" class="line-art" style="margin:8px auto; display:block;">
-    <circle cx="30" cy="20" r="14"/>
-    <circle cx="50" cy="20" r="14"/>
-  </svg>
-  <h3 style="font-size:1.4rem;">Lola &amp; Fer</h3>
-  <p>Nos hace muchísima ilusión celebrarlo con vosotros</p>
+  <div class="wrap">
+    <div class="corn-spot" style="bottom:0px; right:0px; transform:rotate(10deg);">
+      <svg class="corn" viewBox="0 0 40 74" width="34" height="63" style="animation-delay:1.8s;">
+        <path class="husk" d="M20 58 C13 66 9 74 4 76"/>
+        <path class="husk" d="M20 58 C27 66 31 74 36 76"/>
+        <path class="husk" d="M20 58 V76"/>
+        <path class="cob" d="M20 4 C29 4 33 15 33 30 C33 46 29 57 20 61 C11 57 7 46 7 30 C7 15 11 4 20 4 Z"/>
+        <path class="kernels" d="M10 13 H30 M9 19 H31 M9 25 H31 M9 31 H31 M9 37 H31 M9 43 H31 M11 49 H29 M13 54 H27"/>
+      </svg>
+    </div>
+    <span class="eyebrow">Con muchísimo cariño</span>
+    <svg width="60" height="30" viewBox="0 0 80 40" class="line-art" style="margin:8px auto; display:block;">
+      <circle cx="30" cy="20" r="14"/>
+      <circle cx="50" cy="20" r="14"/>
+    </svg>
+    <h3 style="font-size:1.4rem;">Lola &amp; Fer</h3>
+    <p>Nos hace muchísima ilusión celebrarlo con vosotros</p>
+  </div>
 </footer>
 
 <script>
