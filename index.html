@@ -1067,6 +1067,19 @@
       </div>
 
       <div class="field">
+        <span class="field-label">¿Traerás acompañante (+1)?</span>
+        <div class="toggle-row" data-group="acompanante">
+          <div class="toggle" data-value="Sí">Sí</div>
+          <div class="toggle" data-value="No">No</div>
+        </div>
+
+        <div class="sub-options" id="acompananteSubOptions">
+          <label class="field-label" style="font-size:0.95rem;" for="acompananteNombre">Nombre completo del acompañante</label>
+          <input type="text" id="acompananteNombre" name="acompananteNombre" placeholder="¿Cómo se llama?">
+        </div>
+      </div>
+
+      <div class="field">
         <span class="field-label">¿Asistirás a la preboda?</span>
         <div class="toggle-row" data-group="preboda">
           <div class="toggle" data-value="Sí">Sí</div>
@@ -1258,7 +1271,7 @@
       });
     });
   }
-  ['boda','preboda','autobus','busTramo'].forEach(setupToggleGroup);
+  ['boda','acompanante','preboda','autobus','busTramo'].forEach(setupToggleGroup);
 
   // ---- conditional bus sub-options ----
   const autobusRow = document.querySelector('.toggle-row[data-group="autobus"]');
@@ -1267,6 +1280,17 @@
     if(e.detail === 'Sí'){ busSub.classList.add('open'); }
     else { busSub.classList.remove('open');
       busSub.querySelectorAll('.toggle').forEach(t=>t.classList.remove('selected','no-style'));
+    }
+  });
+
+  // ---- conditional +1 name field ----
+  const acompananteRow = document.querySelector('.toggle-row[data-group="acompanante"]');
+  const acompananteSub = document.getElementById('acompananteSubOptions');
+  const acompananteNombreInput = document.getElementById('acompananteNombre');
+  acompananteRow.addEventListener('changed', (e)=>{
+    if(e.detail === 'Sí'){ acompananteSub.classList.add('open'); }
+    else { acompananteSub.classList.remove('open');
+      acompananteNombreInput.value = '';
     }
   });
 
@@ -1285,12 +1309,12 @@
   });
 
   // ---- RSVP form submit ----
-  // Para recibir las respuestas en vuestro email sin necesidad de programar un backend,
-  // podéis usar un servicio gratuito como https://formspree.io :
-  // 1) Cread una cuenta gratuita y un formulario nuevo.
-  // 2) Sustituid la constante FORM_ENDPOINT de aquí abajo por la URL que os den (algo así como
-  //    "https://formspree.io/f/xxxxxxx").
-  // 3) Volved a subir este archivo a GitHub.
+  // Este formulario envía las respuestas a una Google Sheet mediante un
+  // "Web App" de Google Apps Script (gratis, sin necesidad de programar un backend).
+  // Ver instrucciones completas de configuración más abajo en la conversación con Claude.
+  // 1) Sustituid la constante FORM_ENDPOINT de aquí abajo por la URL de vuestro Web App
+  //    (termina en /exec).
+  // 2) Volved a subir este archivo a GitHub.
   // Si dejáis FORM_ENDPOINT vacío, el formulario mostrará el mensaje de agradecimiento
   // pero NO enviará los datos a ningún sitio.
   const FORM_ENDPOINT = "";
@@ -1300,7 +1324,7 @@
   const formNote = document.getElementById('formNote');
 
   if(!FORM_ENDPOINT){
-    formNote.textContent = "Nota para Lola y Fer: falta configurar FORM_ENDPOINT en el código para recibir las respuestas por email.";
+    formNote.textContent = "Nota para Lola y Fer: falta configurar FORM_ENDPOINT en el código para recibir las respuestas en la Google Sheet.";
   }
 
   form.addEventListener('submit', async (e)=>{
@@ -1312,6 +1336,8 @@
     };
 
     const asisteBoda = getSelected('boda');
+    const traeAcompanante = getSelected('acompanante');
+    const nombreAcompanante = traeAcompanante === 'Sí' ? document.getElementById('acompananteNombre').value.trim() : '';
     const asistePreboda = getSelected('preboda');
     const necesitaBus = getSelected('autobus');
     const tramoBus = necesitaBus === 'Sí' ? getSelected('busTramo') : '';
@@ -1324,11 +1350,17 @@
       alert('Por favor, indicad si asistiréis a la boda.');
       return;
     }
+    if(traeAcompanante === 'Sí' && !nombreAcompanante){
+      alert('Por favor, indicad el nombre completo del acompañante.');
+      return;
+    }
 
     const payload = {
       nombre: document.getElementById('nombre').value.trim(),
       email: document.getElementById('email').value.trim(),
       asiste_boda: asisteBoda,
+      trae_acompanante: traeAcompanante,
+      nombre_acompanante: nombreAcompanante,
       asiste_preboda: asistePreboda,
       necesita_autobus: necesitaBus,
       tramo_autobus: tramoBus,
@@ -1339,7 +1371,8 @@
       try{
         await fetch(FORM_ENDPOINT, {
           method:'POST',
-          headers:{ 'Content-Type':'application/json', 'Accept':'application/json' },
+          mode:'no-cors',
+          headers:{ 'Content-Type':'text/plain;charset=utf-8' },
           body: JSON.stringify(payload)
         });
       }catch(err){
@@ -1351,6 +1384,7 @@
     form.querySelectorAll('input, textarea').forEach(el=>el.value='');
     document.querySelectorAll('.toggle.selected').forEach(t=>t.classList.remove('selected','no-style'));
     busSub.classList.remove('open');
+    acompananteSub.classList.remove('open');
     form.scrollIntoView({ behavior:'smooth', block:'center' });
   });
 </script>
