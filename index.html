@@ -25,7 +25,7 @@
     --terracota:#B9683A;
     --terracota-soft:#D79A6E;
     --white-soft:#FFFCF4;
-    --stripe-gold:#D9A94E;
+    --stripe-gold:#DCAE5C;
     --card-shadow: 0 2px 0 rgba(74,56,38,0.08), 0 10px 24px -14px rgba(74,56,38,0.25);
     --radius: 22px;
     --max-w: 560px;
@@ -59,11 +59,17 @@
   }
   .bg-stripes .stripe-line{
     stroke:var(--stripe-gold);
-    stroke-width:9;
+    stroke-width:11.3;
     stroke-linecap:round;
     stroke-linejoin:round;
     fill:none;
-    opacity:0.85;
+  }
+  .bg-stripes .stripe-line.soft{
+    stroke-width:22.6;
+    opacity:0.22;
+  }
+  .bg-stripes .stripe-line.core{
+    opacity:0.4;
   }
 
   .wrap{max-width:var(--max-w); margin:0 auto; padding:0 22px; position:relative;}
@@ -622,8 +628,22 @@
 
 <svg class="bg-stripes" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
   <defs>
-    <pattern id="stripesPattern" width="46" height="90" patternUnits="userSpaceOnUse">
-      <path class="stripe-line" d="M20 0 C25 6 15 12 20 18 C25 24 15 30 20 36 C25 42 15 48 20 54 C25 60 15 66 20 72 C25 78 15 84 20 90"/>
+    <filter id="watercolorRough" x="-40%" y="-40%" width="180%" height="180%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.015 0.045" numOctaves="3" seed="7" result="wobble"/>
+      <feDisplacementMap in="SourceGraphic" in2="wobble" scale="10" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.28 0.2" numOctaves="2" seed="12" result="grain"/>
+      <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.9 0.9 0.9 0 -0.15" result="grainAlpha"/>
+      <feComposite in="displaced" in2="grainAlpha" operator="in" result="mottled"/>
+      <feGaussianBlur in="mottled" stdDeviation="0.35" result="softened"/>
+      <feMerge>
+        <feMergeNode in="softened"/>
+      </feMerge>
+    </filter>
+    <pattern id="stripesPattern" width="35" height="90" patternUnits="userSpaceOnUse">
+      <g filter="url(#watercolorRough)">
+        <path class="stripe-line soft" d="M18 0 C24 5 12 11 18 17 C22 22 14 29 18 35 C25 41 11 49 18 55 C23 59 13 67 18 73 C24 79 12 85 18 90"/>
+        <path class="stripe-line core" d="M18 0 C24 5 12 11 18 17 C22 22 14 29 18 35 C25 41 11 49 18 55 C23 59 13 67 18 73 C24 79 12 85 18 90"/>
+      </g>
     </pattern>
   </defs>
   <rect width="100%" height="100%" fill="url(#stripesPattern)"/>
