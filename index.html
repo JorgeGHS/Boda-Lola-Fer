@@ -210,6 +210,15 @@
     justify-content:center;
     gap:10px;
   }
+  .countdown-note{
+    margin-top:12px;
+    font-family:'Caveat', cursive;
+    font-size:1.15rem;
+    color:var(--ink-soft);
+    transform:rotate(-1deg);
+  }
+  .countdown-note strong{ color:var(--terracota); }
+  .countdown-note a{ color:var(--terracota); font-weight:700; }
   .cd-box{
     display:flex;
     flex-direction:column;
@@ -722,6 +731,7 @@
       <div class="cd-box"><span class="cd-num" id="cdMins">–</span><span class="cd-label">min</span></div>
       <div class="cd-box"><span class="cd-num" id="cdSecs">–</span><span class="cd-label">seg</span></div>
     </div>
+    <p class="countdown-note">Confirmad antes del <strong>1 de marzo de 2027</strong> — <a href="#rsvp">aquí</a></p>
 
     <p class="place">La Coruña, <strong>España</strong></p>
 
@@ -1116,7 +1126,6 @@
 
       <button type="submit" class="btn">Enviar confirmación</button>
       <p class="form-msg" id="formMsg">¡Gracias! Hemos recibido vuestra confirmación 💛</p>
-      <small class="note" id="formNote"></small>
     </form>
   </div>
 </section>
@@ -1147,9 +1156,10 @@
       </svg>
       <h3>Cuenta corriente</h3>
       <div class="iban-box">
-        <span id="ibanText">ES53 1583 0001 1491 4234 3312</span>
+        <span id="ibanText">ES08 0182 5322 2700 0467 3505</span>
         <button class="copy-btn" id="copyIban" type="button">Copiar</button>
       </div>
+      <p style="margin-top:12px; font-size:0.85rem; color:var(--ink-soft);">Titular: María Dolores García de los Huertos Sánchez y Fernando Máiz de Navasqüés (BBVA)</p>
     </div>
   </div>
 </section>
@@ -1326,11 +1336,6 @@
 
   const form = document.getElementById('rsvpForm');
   const formMsg = document.getElementById('formMsg');
-  const formNote = document.getElementById('formNote');
-
-  if(!FORM_ENDPOINT){
-    formNote.textContent = "Nota para Lola y Fer: falta configurar FORM_ENDPOINT en el código para recibir las respuestas en la Google Sheet.";
-  }
 
   form.addEventListener('submit', async (e)=>{
     e.preventDefault();
