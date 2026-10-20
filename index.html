@@ -578,6 +578,47 @@
   .iban-card{
     text-align:center;
   }
+  .gift-joke{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.45rem;
+    line-height:1.3;
+    color:var(--brown-dark);
+    margin:10px auto 0;
+    max-width:420px;
+  }
+  .gift-hl{
+    position:relative;
+    display:inline-block;
+    color:var(--terracota);
+    font-weight:600;
+  }
+  .gift-underline{
+    position:absolute;
+    left:0; right:0; bottom:-6px;
+    width:100%; height:8px;
+  }
+  .gift-underline path{
+    fill:none; stroke:var(--terracota); stroke-width:2.2; stroke-linecap:round;
+  }
+  .card .gift-hand{
+    font-family:'Caveat', cursive;
+    font-weight:700;
+    font-size:1.7rem;
+    color:var(--terracota);
+    margin:4px 0 0;
+    transform:rotate(-2deg);
+  }
+  .gift-arrow{
+    display:block;
+    width:34px; height:48px;
+    margin:2px auto -4px;
+    overflow:visible;
+  }
+  .gift-arrow path{
+    fill:none; stroke:var(--brown-dark); stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round;
+  }
   .iban-box{
     margin-top:14px;
     display:inline-flex;
@@ -791,7 +832,7 @@
         <circle cx="24" cy="18" r="2" style="stroke:var(--terracota);"/>
       </svg>
       <h3>Misa</h3>
-      <span class="time-pill">12:00 h</span>
+      <span class="time-pill">12:30 h</span>
       <p><strong>Colegiata Santa María del Campo</strong></p>
       <p>Calle Damas, 24, 15001 La Coruña</p>
       <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Colegiata+de+Santa+Mar%C3%ADa+del+Campo%2C+Calle+Damas+24%2C+15001+La+Coru%C3%B1a" target="_blank" rel="noopener">
@@ -1092,7 +1133,7 @@
     <div class="section-head reveal">
       <span class="eyebrow">Si os apetece</span>
       <h2>Regalos</h2>
-      <p class="sub">¡Vosotros venid a disfrutar, que la boda corre por nuestra cuenta!</p>
+      <p class="gift-joke">¡Vosotros venid a disfrutar, que la boda <span class="gift-hl">corre por nuestra cuenta!<svg class="gift-underline" viewBox="0 0 200 10" preserveAspectRatio="none" aria-hidden="true"><path d="M2 6 Q25 1 50 5 T100 5 T150 4 T198 6"/></svg></span></p>
     </div>
 
     <div class="card iban-card reveal">
@@ -1101,7 +1142,11 @@
         <path d="M6 20 H42"/>
         <path d="M12 28 H20"/>
       </svg>
-      <h3>Y nuestra cuenta es esta:</h3>
+      <p class="gift-hand">Y nuestra cuenta es esta:</p>
+      <svg class="gift-arrow" viewBox="0 0 40 56" aria-hidden="true">
+        <path d="M22 3 C12 14 30 22 20 34 C17 38 16 41 18 46"/>
+        <path d="M10 38 L18 48 L28 38"/>
+      </svg>
       <div class="iban-box">
         <span id="ibanText">ES08 0182 5322 2700 0467 3505</span>
         <button class="copy-btn" id="copyIban" type="button">Copiar</button>
@@ -1148,7 +1193,7 @@
 
 <script>
   // ---- countdown ----
-  const WEDDING_DATE = new Date("2027-05-29T12:00:00+02:00");
+  const WEDDING_DATE = new Date("2027-05-29T12:30:00+02:00");
   const cdDays = document.getElementById('cdDays');
   const cdHours = document.getElementById('cdHours');
   const cdMins = document.getElementById('cdMins');
